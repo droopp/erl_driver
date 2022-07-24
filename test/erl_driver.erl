@@ -4,9 +4,9 @@
 
 start() ->
     case erl_ddll:load_driver("../", "erl_driver") of
-	ok -> ok;
-	{error, already_loaded} -> ok;
-	_ -> exit({error, could_not_load_driver})
+        ok -> ok;
+        {error, already_loaded} -> ok;
+        _ -> exit({error, could_not_load_driver})
     end,
     spawn(?MODULE, init, ["erl_driver"]).
 
@@ -24,8 +24,8 @@ call(X) ->
 call_port(Msg) ->
     erl_driver ! {call, self(), Msg},
     receive
-	{erl_driver, Result} ->
-	    Result
+        {erl_driver, Result} ->
+            Result
     end.
 
 loop(Port) ->
@@ -33,16 +33,16 @@ loop(Port) ->
 	{call, Caller, Msg} ->
 	    Port ! {self(), {command, Msg}},
 	    receive
-		{Port, {data, Data}} ->
-		    Caller ! {erl_driver, Data}
+            {Port, {data, Data}} ->
+                Caller ! {erl_driver, Data}
 	    end,
 	    loop(Port);
 
 	stop ->
 	    Port ! {self(), close},
 	    receive
-		{Port, closed} ->
-		    exit(normal)
+            {Port, closed} ->
+                exit(normal)
 	    end;
 
 	{'EXIT', Port, Reason} ->
