@@ -1,2 +1,3 @@
 *.so
 test/*.beam
+erl_driver/target
