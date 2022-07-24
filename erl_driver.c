@@ -2,7 +2,7 @@
 #include "erl_driver.h"
 #include <string.h>
 
-#define DRV_NAME "libsum"
+#define DRV_NAME "erl_driver"
 
 //import rust fn
 extern char* port_call(char*, size_t);

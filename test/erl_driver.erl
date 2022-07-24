@@ -1,14 +1,14 @@
 -module(erl_driver).
--export([start/1, stop/0, init/1]).
+-export([start/0, stop/0, init/1]).
 -export([call/1]).
 
-start(SharedLib) ->
-    case erl_ddll:load_driver(".", SharedLib) of
+start() ->
+    case erl_ddll:load_driver("../", "erl_driver") of
 	ok -> ok;
 	{error, already_loaded} -> ok;
 	_ -> exit({error, could_not_load_driver})
     end,
-    spawn(?MODULE, init, [SharedLib]).
+    spawn(?MODULE, init, ["erl_driver"]).
 
 init(SharedLib) ->
     register(erl_driver, self()),
