@@ -1,3 +1,4 @@
 *.so
 test/*.beam
 erl_driver/target
+erl_driver/Cargo.lock

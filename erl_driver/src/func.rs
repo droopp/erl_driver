@@ -2,9 +2,11 @@
 // Worker process 
 //
 
+use log::debug;
+
 pub fn process(request: String) -> String {
 
-    println!("request: {:?}", request);
+    debug!("request: {:?}", request);
     return request;
 
 }
