@@ -35,7 +35,24 @@ run_tests() ->
               ?assert(Res=:=<<"test">>)
 
         end
+     },
+     {"test error call",
+        fun() ->
+
+            Res = erl_driver:call(<<"error\n">>),
+              ?assert(Res=:=<<"error">>)
+
+        end
+     },
+     {"test call2",
+        fun() ->
+
+            Res = erl_driver:call(<<"test">>),
+              ?assert(Res=:=<<"test">>)
+
+        end
      }
+ 
 
     ].
 
