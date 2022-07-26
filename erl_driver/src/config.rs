@@ -1,3 +1,5 @@
+use log::{trace};
+
 
 pub struct Config {
     pub timeout: u64
@@ -10,6 +12,12 @@ impl Config {
         let mut cfg = Config{timeout: 0};
 
         for kv in params.split(" "){
+
+            if kv == ""{
+                break;
+            }
+
+            trace!("config parse: {}", kv);
 
             let val: Vec<&str> = kv.split("=").collect();
             let (k, v) = (val[0], val[1]);
