@@ -18,8 +18,10 @@ init(SharedLib) ->
 stop() ->
     erl_driver ! stop.
 
+
 call(X) ->
     call_port(X).
+
 
 call_port(Msg) ->
     erl_driver ! {call, self(), Msg},
@@ -27,6 +29,7 @@ call_port(Msg) ->
         {erl_driver, Result} ->
             Result
     end.
+
 
 loop(Port) ->
     receive

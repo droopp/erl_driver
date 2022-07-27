@@ -3,7 +3,7 @@
 //
 
 use crate::config::Config;
-use log::debug;
+use crate::log::trace;
 use std::{thread, time};
 
 
@@ -12,8 +12,8 @@ pub fn process(params: String, request: String) -> String  {
 
     let cfg = Config::new(params);
 
-    debug!("params: {:?}", cfg.timeout);
-    debug!("request: {:?}", request);
+    trace(format!("params: {:?}", cfg.timeout));
+    trace(format!("request: {:?}", request));
  
     if request == "error\n"{
         panic!("error occured");

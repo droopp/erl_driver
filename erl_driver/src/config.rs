@@ -1,4 +1,4 @@
-use log::{trace};
+use crate::log::trace;
 
 
 pub struct Config {
@@ -17,7 +17,7 @@ impl Config {
                 break;
             }
 
-            trace!("config parse: {}", kv);
+            trace(format!("config parse: {}", kv));
 
             let val: Vec<&str> = kv.split("=").collect();
             let (k, v) = (val[0], val[1]);

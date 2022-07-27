@@ -6,7 +6,11 @@ build:
 
 tests:
 	@cd test && erlc *.erl && cd -
-	@cd test && RUST_LOG=trace erl -noshell -pa test -eval "eunit:test(erl_driver_test, [verbose])" -s init stop
+	@cd test && erl +A 8 -noshell -pa test -eval "eunit:test(erl_driver_test, [verbose])" -s init stop
+
+run:
+	@cd test && erlc *.erl && cd -
+	@cd test && erl +A 8 -pa test
 
 clean:
 	@cd erl_driver && cargo clean && cd -
